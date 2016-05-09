@@ -1,5 +1,8 @@
 package lilap.com.goalset.dao.sqlLite;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+
 import lilap.com.goalset.dao.DaoFactory;
 import lilap.com.goalset.dao.GoalDao;
 
@@ -7,17 +10,18 @@ import lilap.com.goalset.dao.GoalDao;
  * Created by Vadim on 08.05.2016.
  */
 public class SqlLiteDaoFactory extends DaoFactory {
+    private Context context;
+    private SQLiteDatabase database;
+    private DBHelper dbHelper;
 
-    private final static SqlLiteDaoFactory instance = new SqlLiteDaoFactory();
-
-    public static SqlLiteDaoFactory getInstance(){
-        return instance;
+    public SqlLiteDaoFactory(Context context){
+        this.context = context;
+        this.dbHelper = new DBHelper(context);
+        this.database = dbHelper.getWritableDatabase();
     }
-
-    private SqlLiteDaoFactory(){}
 
     @Override
     public GoalDao getGoalDao() {
-        return GoalSqlLiteDao.getInstance();
+        return new GoalSqlLiteDao(this.database);
     }
 }

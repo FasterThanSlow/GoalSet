@@ -12,14 +12,23 @@ public class Goal {
     private String description;
     private int progress;
     private Date date;
-    private Time time;
     private int period;
     private int priority;
 
-
-    public int getPriority() {
-        return priority;
+    public Goal(int id, String title, String description, int progress, Date date, int period, int priority) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.progress = progress;
+        this.date = date;
+        this.period = period;
+        this.priority = priority;
     }
+
+    public Goal(){
+    }
+
+    public int getPriority() { return priority;}
 
     public void setPriority(int priority) {
         this.priority = priority;
@@ -31,14 +40,6 @@ public class Goal {
 
     public void setPeriod(int period) {
         this.period = period;
-    }
-
-    public Time getTime() {
-        return time;
-    }
-
-    public void setTime(Time time) {
-        this.time = time;
     }
 
     public Date getDate() {

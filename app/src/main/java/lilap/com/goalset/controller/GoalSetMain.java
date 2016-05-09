@@ -1,5 +1,6 @@
 package lilap.com.goalset.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,11 +13,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import lilap.com.goalset.R;
+import lilap.com.goalset.dao.DaoFactory;
+import lilap.com.goalset.entity.goal.Goal;
 
 public class GoalSetMain extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    public static final int ADD_NEW_GOAL_ACTIVITY = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +35,12 @@ public class GoalSetMain extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(GoalSetMain.this, AddGoalActivity.class);
+                startActivityForResult(intent, ADD_NEW_GOAL_ACTIVITY);
             }
         });
 
@@ -43,6 +53,7 @@ public class GoalSetMain extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
 
     @Override
     public void onBackPressed() {
@@ -99,5 +110,10 @@ public class GoalSetMain extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

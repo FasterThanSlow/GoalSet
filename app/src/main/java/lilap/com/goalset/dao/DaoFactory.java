@@ -1,5 +1,7 @@
 package lilap.com.goalset.dao;
 
+import android.content.Context;
+
 import lilap.com.goalset.dao.sqlLite.SqlLiteDaoFactory;
 
 /**
@@ -7,10 +9,10 @@ import lilap.com.goalset.dao.sqlLite.SqlLiteDaoFactory;
  */
 public abstract class DaoFactory {
 
-    public static DaoFactory getDaoFactory(){
+    public static DaoFactory getDaoFactory(Context context){
         switch ("sqlLite"){
             case "sqlLite":
-                return SqlLiteDaoFactory.getInstance();
+                return new SqlLiteDaoFactory(context);
         }
         return null;
     }
