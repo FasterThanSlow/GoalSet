@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,7 +30,7 @@ public class AddGoalActivity extends AppCompatActivity implements CompoundButton
     private EditText titleEdt;
     private Spinner spinner;
     private EditText descriptionEdt;
-    private Switch dateSwitch;
+    private SwitchCompat dateSwitch;
     private RatingBar priorityBar;
     private Calendar calendar;
     private static Date currDate;
@@ -42,7 +43,7 @@ public class AddGoalActivity extends AppCompatActivity implements CompoundButton
         setContentView(R.layout.add_goal);
         addBtn = (Button)findViewById(R.id.AddBtn);
         titleEdt = (EditText)findViewById(R.id.titleEdt);
-        dateSwitch = (Switch)findViewById(R.id.switch1);
+        dateSwitch = (SwitchCompat)findViewById(R.id.switch1);
         descriptionEdt = (EditText)findViewById(R.id.editText);
         priorityBar = (RatingBar)findViewById(R.id.ratingBar);
 

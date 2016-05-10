@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,19 +14,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.widget.ListView;
+import android.widget.Switch;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.util.List;
 
 import lilap.com.goalset.R;
+import lilap.com.goalset.controller.GoalsList.GoalsListAdapter;
 import lilap.com.goalset.dao.DaoFactory;
+import lilap.com.goalset.dao.sqlLite.GoalSqlLiteDao;
 import lilap.com.goalset.entity.goal.Goal;
 
 public class GoalSetMain extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     public static final int ADD_NEW_GOAL_ACTIVITY = 1;
-
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +38,7 @@ public class GoalSetMain extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-
+        fab.setImageResource(R.mipmap.ic_add_goal);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,9 +52,13 @@ public class GoalSetMain extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        listView = (ListView)findViewById(R.id.goalsListView);
+        List<Goal> goals = DaoFactory.getDaoFactory(this).getGoalDao().getGoalsCollection();
+        GoalsListAdapter adapter = new GoalsListAdapter(this,R.layout.goal_list_item,goals);
+        listView.setAdapter(adapter);
     }
 
 
@@ -115,5 +122,8 @@ public class GoalSetMain extends AppCompatActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        List<Goal> goals = DaoFactory.getDaoFactory(this).getGoalDao().getGoalsCollection();
+        GoalsListAdapter adapter = new GoalsListAdapter(this,R.layout.goal_list_item,goals);
+        listView.setAdapter(adapter);
     }
 }
