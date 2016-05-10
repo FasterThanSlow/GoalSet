@@ -9,21 +9,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import lilap.com.goalset.R;
+import lilap.com.goalset.controller.GoalSetMain;
+import lilap.com.goalset.dao.DaoFactory;
 import lilap.com.goalset.entity.goal.Goal;
 
 /**
  * Created by Vadim on 10.05.2016.
  */
 public class GoalsListAdapter extends ArrayAdapter<Goal> {
+    Context context;
+
     public GoalsListAdapter(Context context, int resource, List<Goal> goals) {
         super(context, resource, goals);
+        this.context = context;
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -37,12 +44,13 @@ public class GoalsListAdapter extends ArrayAdapter<Goal> {
             view = layoutInflater.inflate(R.layout.goal_list_item, null);
         }
 
-        Goal goal = getItem(position);
+        final Goal goal = getItem(position);
 
         if(goal != null){
             TextView goalTitle = (TextView)view.findViewById(R.id.titleTV);
             ImageView priorityImg = (ImageView)view.findViewById(R.id.priority);
             SwitchCompat progress = (SwitchCompat)view.findViewById(R.id.achived);
+
 
             goalTitle.setText(goal.getTitle());
 
@@ -58,10 +66,24 @@ public class GoalsListAdapter extends ArrayAdapter<Goal> {
                     break;
             }
 
+            progress.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(isChecked){
+                        goal.setProgress(100);
+                        DaoFactory.getDaoFactory(context).getGoalDao().update(goal);
+                    }
+                    else{
+                        goal.setProgress(0);
+                        DaoFactory.getDaoFactory(context).getGoalDao().update(goal);
+                    }
+                }
+            });
+
             if(goal.getProgress() == 0) {
-                progress.setChecked(true);
-            }else {
                 progress.setChecked(false);
+            }else {
+                progress.setChecked(true);
             }
 
         }
