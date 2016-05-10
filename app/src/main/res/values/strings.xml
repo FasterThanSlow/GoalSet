@@ -1,10 +1,15 @@
 <resources>
     <string name="app_name">GoalSet</string>
 
+    <string-array name="goalsType">
+        <item>Дневная цель</item>
+        <item>Недельная цель</item>
+    </string-array>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
     <string name="Add">Добавить цель</string>
-    <string name="getTitleString">Введите цель:</string>
+    <string name="getTitleString">Цель:</string>
 </resources>

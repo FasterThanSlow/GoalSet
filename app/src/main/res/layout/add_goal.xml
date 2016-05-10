@@ -7,6 +7,15 @@
     android:scrollbars="vertical"
     tools:context="lilap.com.goalset.controller.AddGoalActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/getTitleString"
+        android:id="@+id/titleLbl"
+        android:paddingTop="20dp" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,35 +27,62 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/getTitleString"
-        android:id="@+id/titleLbl" />
+        android:text="Приоритет:"
+        android:id="@+id/textView3"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBar"
+        android:layout_gravity="center"
+        android:numStars="3"
+        android:rating="1"
+        android:stepSize="1" />
+
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:spinnerMode="dropdown" />
 
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Установить другую дату"
-        android:layout_gravity="center"
         android:id="@+id/switch1"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
         android:checked="false"
-        android:layout_marginTop="20dp"
-        android:singleLine="true" />
+        android:text="Установить другую дату" />
 
-    <DatePicker
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/datePicker"
-        android:calendarViewShown="false"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Описание (необязательно):"
         android:layout_gravity="center"
-        android:nestedScrollingEnabled="false"
-        android:paddingTop="20dp"
-        android:visibility="invisible" />
+        android:id="@+id/textView2"
+        android:layout_marginTop="30dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:linksClickable="false"
+        android:maxLines="2" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="30dp"
         android:text="@string/Add"
         android:id="@+id/AddBtn" />
 
