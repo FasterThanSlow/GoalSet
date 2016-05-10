@@ -25,7 +25,6 @@ import lilap.com.goalset.dao.DaoFactory;
 import lilap.com.goalset.entity.goal.Goal;
 
 public class AddGoalActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener,View.OnClickListener {
-    public static final int DATE_DIALOG = 123;
     private Button addBtn;
     private EditText titleEdt;
     private Spinner spinner;
@@ -69,7 +68,6 @@ public class AddGoalActivity extends AppCompatActivity implements CompoundButton
         });
 
 
-        dateSwitch.setOnClickListener(this);
         dateSwitch.setOnCheckedChangeListener(this);
         addBtn.setOnClickListener(this);
 

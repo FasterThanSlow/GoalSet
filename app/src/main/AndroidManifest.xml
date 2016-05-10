@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.AddGoalActivity"></activity>
+        <activity android:name=".controller.AddGoalActivity" />
+        <activity android:name=".controller.UpdateGoalActivity"></activity>
     </application>
 
 </manifest>

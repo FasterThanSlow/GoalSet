@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:scrollbars="vertical"
+    tools:context="lilap.com.goalset.controller.AddGoalActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/getTitleString"
+        android:id="@+id/titleLbl"
+        android:paddingTop="20dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:id="@+id/titleEdtUpd" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Приоритет:"
+        android:id="@+id/textView3"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBarUpd"
+        android:layout_gravity="center"
+        android:numStars="3"
+        android:rating="1"
+        android:stepSize="1" />
+
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerUpd"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:spinnerMode="dropdown" />
+
+    <android.support.v7.widget.SwitchCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switch1Upd"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:checked="false"
+        android:text="Установить другую дату" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Описание (необязательно):"
+        android:layout_gravity="center"
+        android:id="@+id/textView2"
+        android:layout_marginTop="30dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editTextUpd"
+        android:linksClickable="false"
+        android:maxLines="2" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="Изменить"
+        android:id="@+id/editBtn" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:text="Удалить"
+        android:id="@+id/removeBtn"
+        android:layout_gravity="center_horizontal"
+        android:background="#ff0303"
+        android:textColor="@android:color/white"/>
+
+</LinearLayout>

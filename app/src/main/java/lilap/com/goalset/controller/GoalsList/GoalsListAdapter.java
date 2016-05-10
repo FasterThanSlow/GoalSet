@@ -2,6 +2,7 @@ package lilap.com.goalset.controller.GoalsList;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.support.v7.widget.SwitchCompat;
@@ -18,15 +19,17 @@ import android.widget.Toast;
 import java.util.List;
 
 import lilap.com.goalset.R;
-import lilap.com.goalset.controller.GoalSetMain;
+import lilap.com.goalset.controller.UpdateGoalActivity;
 import lilap.com.goalset.dao.DaoFactory;
 import lilap.com.goalset.entity.goal.Goal;
+
 
 /**
  * Created by Vadim on 10.05.2016.
  */
 public class GoalsListAdapter extends ArrayAdapter<Goal> {
     Context context;
+    public static final int UPDATE_ACTIVITY = 3;
 
     public GoalsListAdapter(Context context, int resource, List<Goal> goals) {
         super(context, resource, goals);
@@ -51,7 +54,14 @@ public class GoalsListAdapter extends ArrayAdapter<Goal> {
             ImageView priorityImg = (ImageView)view.findViewById(R.id.priority);
             SwitchCompat progress = (SwitchCompat)view.findViewById(R.id.achived);
 
-
+            goalTitle.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, UpdateGoalActivity.class);
+                    intent.putExtra("goalId", goal.getId());
+                    context.startActivity(intent);
+                }
+            });
             goalTitle.setText(goal.getTitle());
 
             switch (goal.getPriority()) {
