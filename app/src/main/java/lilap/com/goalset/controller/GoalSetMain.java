@@ -1,11 +1,12 @@
 package lilap.com.goalset.controller;
 
-import android.app.Activity;
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,10 +15,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
-
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
 import lilap.com.goalset.R;
 import lilap.com.goalset.controller.GoalsList.GoalsListAdapter;
 import lilap.com.goalset.dao.DaoFactory;
@@ -27,6 +31,7 @@ public class GoalSetMain extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     public static final int ADD_NEW_GOAL_ACTIVITY = 1;
     private ListView listView;
+    private ViewPager pager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +58,11 @@ public class GoalSetMain extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        listView = (ListView)findViewById(R.id.goalsListView);
-        final List<Goal> goals = DaoFactory.getDaoFactory(this).getGoalDao().getGoalsCollection();
-        GoalsListAdapter adapter = new GoalsListAdapter(this,R.layout.goal_list_item,goals);
-        listView.setAdapter(adapter);
+        pager = (ViewPager)findViewById(R.id.viewPager);
+        Date date = new Date(System.currentTimeMillis());
+        MyPageAdapter myPageAdapter = new MyPageAdapter(this,date);
+        pager.setAdapter(myPageAdapter);
+        pager.setCurrentItem(1);
     }
 
 

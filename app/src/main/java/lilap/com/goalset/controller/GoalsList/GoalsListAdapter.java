@@ -3,21 +3,16 @@ package lilap.com.goalset.controller.GoalsList;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Icon;
 import android.os.Build;
-import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.List;
-
 import lilap.com.goalset.R;
 import lilap.com.goalset.controller.UpdateGoalActivity;
 import lilap.com.goalset.dao.DaoFactory;
@@ -52,7 +47,7 @@ public class GoalsListAdapter extends ArrayAdapter<Goal> {
         if(goal != null){
             TextView goalTitle = (TextView)view.findViewById(R.id.titleTV);
             ImageView priorityImg = (ImageView)view.findViewById(R.id.priority);
-            SwitchCompat progress = (SwitchCompat)view.findViewById(R.id.achived);
+            CheckBox checkBox = (CheckBox)view.findViewById(R.id.checkBox);
 
             goalTitle.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -76,7 +71,7 @@ public class GoalsListAdapter extends ArrayAdapter<Goal> {
                     break;
             }
 
-            progress.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if(isChecked){
@@ -91,9 +86,9 @@ public class GoalsListAdapter extends ArrayAdapter<Goal> {
             });
 
             if(goal.getProgress() == 0) {
-                progress.setChecked(false);
+                checkBox.setChecked(false);
             }else {
-                progress.setChecked(true);
+                checkBox.setChecked(true);
             }
 
         }
