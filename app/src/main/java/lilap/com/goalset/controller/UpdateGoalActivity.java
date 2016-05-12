@@ -105,6 +105,7 @@ public class UpdateGoalActivity extends AppCompatActivity implements View.OnClic
             case R.id.removeBtn:
                 DaoFactory.getDaoFactory(this).getGoalDao().remove(goalId);
                 intent = new Intent(this,GoalSetMain.class);
+                intent.putExtra("currDate",currDate);
                 startActivity(intent);
                 break;
             case R.id.editBtn:
@@ -115,10 +116,11 @@ public class UpdateGoalActivity extends AppCompatActivity implements View.OnClic
                 newGoal.setDate(calendar.getTime());
                 newGoal.setPeriod(newPeriod);
                 newGoal.setProgress(goal.getProgress());
-                newGoal.setPriority((int)priority.getRating());
+                newGoal.setPriority((int) priority.getRating());
 
                 DaoFactory.getDaoFactory(this).getGoalDao().update(newGoal);
                 intent = new Intent(this,GoalSetMain.class);
+                intent.putExtra("currDate",currDate);
                 startActivity(intent);
                 break;
         }

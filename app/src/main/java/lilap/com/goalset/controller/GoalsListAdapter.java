@@ -1,5 +1,4 @@
-package lilap.com.goalset.controller.GoalsList;
-
+package lilap.com.goalset.controller;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 import lilap.com.goalset.R;
-import lilap.com.goalset.controller.UpdateGoalActivity;
 import lilap.com.goalset.dao.DaoFactory;
 import lilap.com.goalset.entity.goal.Goal;
 

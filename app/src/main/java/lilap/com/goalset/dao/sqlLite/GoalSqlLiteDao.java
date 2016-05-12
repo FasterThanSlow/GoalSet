@@ -4,7 +4,9 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -72,7 +74,24 @@ public class GoalSqlLiteDao implements GoalDao {
 
     @Override
     public List<Goal> findByDate(Date date) {
-        Cursor cursor = database.query(TABLE_NAME, COLUMNS, COLUMN_DATE + "=" + date.getTime(), null, null, null, null);
+        Calendar buffCal = Calendar.getInstance();
+        buffCal.setTime(date);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(buffCal.get(Calendar.YEAR), buffCal.get(Calendar.MONTH), buffCal.get(Calendar.DAY_OF_MONTH), 0, 0, 1);
+
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.setTime(date);
+        calendar2.set(buffCal.get(Calendar.YEAR),buffCal.get(Calendar.MONTH),buffCal.get(Calendar.DAY_OF_MONTH),23,59,59);
+
+        long firstDate = calendar.getTimeInMillis();
+        long secondDate = calendar2.getTimeInMillis();
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy.HH.mm.ss");
+        String format1 =simpleDateFormat.format(calendar.getTime());
+        String format2 =simpleDateFormat.format(calendar2.getTime());
+
+        Cursor cursor = database.query(TABLE_NAME, COLUMNS, COLUMN_DATE + " BETWEEN " + firstDate + " AND " + secondDate, null, null, null, null);
         return getListGoals(cursor);
     }
 

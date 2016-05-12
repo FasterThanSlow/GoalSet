@@ -54,9 +54,9 @@ public class AddGoalActivity extends AppCompatActivity implements CompoundButton
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0){
+                if (position == 0) {
                     period = 1;
-                }else{
+                } else {
                     period = 7;
                 }
             }
@@ -71,7 +71,7 @@ public class AddGoalActivity extends AppCompatActivity implements CompoundButton
         dateSwitch.setOnCheckedChangeListener(this);
         addBtn.setOnClickListener(this);
 
-        currDate = new Date(System.currentTimeMillis());
+        currDate = (Date)getIntent().getExtras().get("date");
         calendar = Calendar.getInstance();
         calendar.setTime(currDate);
 
